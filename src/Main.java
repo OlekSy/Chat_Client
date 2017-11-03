@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -30,6 +31,10 @@ public class Main extends Application {
 
         mainStage.setTitle("ClientPart v1.0");
         mainStage.setScene(logInScene);
+        //------------BLACK MAGIC-------------------------------------
+        //-------------DONT TOUCH-------------------------------------
+        mainStage.setOnCloseRequest(e -> Platform.exit());
+        //------------------------------------------------------------
         mainStage.show();
     }
 
@@ -40,7 +45,7 @@ public class Main extends Application {
         chatLayOut = loader.load();
         chatScene = new Scene(chatLayOut, 600, 400);
 
-        new ClientPart(loader.getController());
+        new ClientPart(loader.getController()).start();
 
         mainStage.setScene(chatScene);
     }

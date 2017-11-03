@@ -20,7 +20,9 @@ public class ClientPart extends Thread{
 
     @Override
     public void run(){
+        boolean socketIsClosed = false;
         InetAddress address = null;
+        String message;
         try {
             address = InetAddress.getByName("localhost");
         } catch (UnknownHostException e) {
@@ -28,17 +30,28 @@ public class ClientPart extends Thread{
         }
         Socket socket;
         try {
-            socket = new Socket(address, 27777);
+            socket = new Socket(address, 8080);
 
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
             controller.setOut(out);
+
+            out.println(name);
             try {
                 while (true) {
-                    controller.receive(in.readLine());
+                    message = in.readLine();
+                    if(message.equals("quit")){
+                        socket.close();
+                        socketIsClosed = true;
+                        break;
+                    }
+                    controller.receive(message);
                 }
             } finally {
-                socket.close();
+                if(!socketIsClosed) {
+                    socket.close();
+                }
+                controller.shutDown();
             }
         } catch (IOException e) {
             e.printStackTrace();

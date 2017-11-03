@@ -1,7 +1,9 @@
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.PrintWriter;
@@ -24,7 +26,6 @@ public class ChatController {
     }
 
     public void send(){
-        textOutput.appendText("Here I am");
         out.println(output.getText());
         output.clear();
     }
@@ -33,6 +34,10 @@ public class ChatController {
 
     public void receive(String message){
         textOutput.appendText("\n" + message);
+    }
+
+    public void shutDown(){
+        Platform.exit();
     }
 
 }
