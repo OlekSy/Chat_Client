@@ -1,5 +1,4 @@
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
 
 import java.io.*;
 import java.net.InetAddress;
@@ -16,6 +15,7 @@ public class ClientPart extends Thread{
     private PrintWriter out;
     private boolean socketIsClosed;
     private final static int versionNumber = 0; //1.0.0
+    private final static int PORT = 27777;
 
     public ClientPart(ChatController controller){
         this.name = Main.getUserName();
@@ -28,14 +28,15 @@ public class ClientPart extends Thread{
         InetAddress address = null;
         String message;
         try {
-            address = InetAddress.getByName("localhost");
+            //address = InetAddress.getByName("localhost");
+            address = InetAddress.getByName("45.76.93.162");
         } catch (UnknownHostException e) {
             e.printStackTrace();
         }
 
         Socket socket;
         try {
-            socket = new Socket(address, 8080);
+            socket = new Socket(address, PORT);
             socketIsClosed = false;
 
             //add shutdown hook
@@ -74,12 +75,7 @@ public class ClientPart extends Thread{
                 } else if (message.contains("\\out")) { //contains because message will be: <username> \out
                     System.out.println("Received out command: " + message); //Don't show \out commands, only log
                 } else if (message.equals("\\versionTooLow")) {
-//                    Alert alert = new Alert(Alert.AlertType.ERROR);
-//                    alert.setTitle("Version too low!");
-//                    alert.setHeaderText(null);
-//                    alert.setContentText("Please download the newest version of this chat :)");
-//                    alert.showAndWait();
-//                    Platform.exit();
+                    controller.receive("Your version is too low. Please update!");
                 }
                 else
                     controller.receive(message);
