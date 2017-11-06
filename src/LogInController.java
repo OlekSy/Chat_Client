@@ -1,4 +1,5 @@
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
 
@@ -12,8 +13,19 @@ public class LogInController {
 
     public void logInButtonAction(){
         if(inputField.getText().equals("")){
-            inputField.setText("Put you name in this field");
-        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("No name entered!");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter a name with a maximum of 20 characters.");
+            alert.showAndWait();
+        } else if (inputField.getText().length() > 20) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Name too long!");
+            alert.setHeaderText(null);
+            alert.setContentText("Please enter a name with a maximum of 20 characters.");
+            alert.showAndWait();
+        }
+        else {
             Main.setUserName(inputField.getText());
             try {
                 new Main().setChatLayOut();

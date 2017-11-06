@@ -28,6 +28,7 @@ public class ChatController {
 
     public void send(){
         out.println(input.getText());
+        if (input.getText().equals("\\quit")) Platform.exit();
         input.clear();
     }
 
@@ -35,10 +36,6 @@ public class ChatController {
 
     public void receive(String message){
         textOutput.appendText("\n" + message);
-    }
-
-    public void shutDown(){
-        Platform.exit();
     }
 
     public void listReceive(String message){clientsOutput.setText(message);}
