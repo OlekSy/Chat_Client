@@ -54,6 +54,7 @@ public class ClientPart extends Thread{
             out.println(name);
             while (true) {
                 message = in.readLine();
+                if (message == null) break; //client has left
                 if(message.equals("\\quit")){
                     socket.close();
                     socketIsClosed = true;
