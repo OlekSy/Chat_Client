@@ -29,8 +29,23 @@ public class ClientPart extends Thread{
             e.printStackTrace();
         }
         Socket socket;
+
         try {
             socket = new Socket(address, 8080);
+
+            //add shutdown hook
+            boolean finalSocketIsClosed = socketIsClosed;
+            Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                out.println("\\out");
+                if(!finalSocketIsClosed) {
+                    try {
+                        socket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                controller.shutDown();
+            }));
 
             in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             out = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
@@ -48,8 +63,14 @@ public class ClientPart extends Thread{
                     if(message.equals("\\list")){
                         message = in.readLine();
                         controller.listReceive(message.replaceAll("@~#", "\n"));
-                    }else
-                    controller.receive(message);
+
+
+                    } else if (message.contains("\\out")) { //contains because message will be: <username> \out
+                        System.out.println("Received out command: " + message); //Don't show \out commands, only log
+                    }
+
+                    else
+                        controller.receive(message);
                 }
             } finally {
                 out.println("\\out");
