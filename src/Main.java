@@ -22,12 +22,13 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         mainStage = primaryStage;
 
-        mainStage.setMinWidth(400);
-        mainStage.setMinHeight(200);
+//        mainStage.setMinWidth(400);
+//        mainStage.setMinHeight(200);
         mainStage.setResizable(false);
 
         logInLayOut = FXMLLoader.load(getClass().getResource("LogInWindow.fxml"));
-        logInScene = new Scene(logInLayOut, 400, 200);
+//        logInScene = new Scene(logInLayOut, 400, 200);
+        logInScene = new Scene(logInLayOut);
 
         mainStage.setTitle("ClientPart v1.0");
         mainStage.setScene(logInScene);
