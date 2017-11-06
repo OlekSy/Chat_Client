@@ -23,6 +23,9 @@ public class ChatController {
         clientsOutput.setEditable(false);
         textOutput.setEditable(false);
         textOutput.setText("Welcome to chat!");
+
+        //set focus to chat input field .. TODO: decide whether "output" is the correct name for this :)
+        Platform.runLater(() -> output.requestFocus());
     }
 
     public void send(){

@@ -10,6 +10,6 @@
       <TextArea fx:id="textOutput" layoutX="14.0" layoutY="14.0" minHeight="30.0" minWidth="200.0" prefHeight="318.0" prefWidth="399.0" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="187.0" AnchorPane.topAnchor="14.0" />
       <TextArea fx:id="clientsOutput" layoutX="427.0" layoutY="15.0" minHeight="30.0" minWidth="50.0" prefHeight="318.0" prefWidth="159.0" AnchorPane.bottomAnchor="68.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0" />
       <TextField fx:id="output" layoutX="14.0" layoutY="348.0" minHeight="26.0" minWidth="200.0" prefHeight="26.0" prefWidth="399.0" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="187.0" />
-      <Button fx:id="btnSend" layoutX="437.0" layoutY="348.0" minHeight="26.0" minWidth="60.0" mnemonicParsing="false" onAction="#send" prefHeight="26.0" prefWidth="139.0" text="Send" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="24.0" />
+      <Button fx:id="btnSend" defaultButton="true" layoutX="437.0" layoutY="348.0" minHeight="26.0" minWidth="60.0" mnemonicParsing="false" onAction="#send" prefHeight="26.0" prefWidth="139.0" text="Send" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="24.0" />
    </children>
 </AnchorPane>
