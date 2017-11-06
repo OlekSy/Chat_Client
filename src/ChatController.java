@@ -3,9 +3,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
-import java.io.BufferedReader;
 import java.io.PrintWriter;
 
 /**
@@ -14,7 +12,7 @@ import java.io.PrintWriter;
 public class ChatController {
 
     @FXML private TextArea clientsOutput, textOutput;
-    @FXML private TextField output;
+    @FXML private TextField input;
     @FXML private Button btnSend;
 
     private PrintWriter out;
@@ -24,13 +22,13 @@ public class ChatController {
         textOutput.setEditable(false);
         textOutput.setText("Welcome to chat!");
 
-        //set focus to chat input field .. TODO: decide whether "output" is the correct name for this :)
-        Platform.runLater(() -> output.requestFocus());
+        //set focus to chat input field
+        Platform.runLater(() -> input.requestFocus());
     }
 
     public void send(){
-        out.println(output.getText());
-        output.clear();
+        out.println(input.getText());
+        input.clear();
     }
 
     public void setOut(PrintWriter out) {this.out = out;}
