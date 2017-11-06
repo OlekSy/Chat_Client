@@ -40,4 +40,6 @@ public class ChatController {
         Platform.exit();
     }
 
+    public void listReceive(String message){clientsOutput.setText(message);}
+
 }

@@ -10,6 +10,6 @@
     <TextField fx:id="inputField" layoutX="157.0" layoutY="88.0" prefHeight="25.0" prefWidth="158.0" />
     <Button layoutX="144.0" layoutY="120.0" mnemonicParsing="false" onAction="#logInButtonAction" prefWidth="114.0" text="I want to chat!" />
     <Label layoutX="149.0" layoutY="65.0" text="What is your name?" />
-    <Label layoutX="85.0" layoutY="91.0" text="My name is:" />
+    <Label layoutX="65.0" layoutY="92.0" text="My name is:" />
   </children>
 </AnchorPane>
